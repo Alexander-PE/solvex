@@ -1,5 +1,21 @@
-<h1 mat-dialog-title>{{data.nombre}}</h1>
+<h1 mat-dialog-title>Producto: {{data.nombre}}</h1>
 <div mat-dialog-content>
   <img [src]="data.imagenUrl" style="width: 400px; height: 300px;" alt="">
-  
+  <div>
+    <p><b>Descripcion:</b> {{data.descripcion}}</p>
+    <mat-form-field>
+      <mat-label>Color</mat-label>
+      <mat-select (valueChange)="updatePrice()" [value]="selectedColor" [(ngModel)]="selectedColor" name="color" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let item of colors" [value]="item.id">
+          {{item.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <h1>Precio: ${{selectedProductPrice}}</h1>
+  <a routerLink="/add" *ngIf="isSeller()">
+    <button mat-fab color="primary" class="foot" aria-label="Example icon button with a delete icon">
+      <mat-icon fontIcon="add"></mat-icon>
+    </button>
+  </a>
 </div>

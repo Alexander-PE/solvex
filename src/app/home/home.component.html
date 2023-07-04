@@ -11,7 +11,7 @@
     </mat-grid-tile>
   </mat-grid-list>
 
-  <a routerLink="/add">
+  <a routerLink="/add" *ngIf="isSeller()">
     <button mat-fab color="primary" class="foot" aria-label="Example icon button with a delete icon">
       <mat-icon fontIcon="add"></mat-icon>
     </button>

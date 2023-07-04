@@ -15,10 +15,10 @@ export class AppComponent {
   }
 
   isAdmin(){
-    return this.service.securitySessionAdmin()
+    return this.service.isAdmin()
   }
 
   isSeller(){
-    return this.service.securitySessionSeller()
+    return this.service.isSeller()
   }
 }

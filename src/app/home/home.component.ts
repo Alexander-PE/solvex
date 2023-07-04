@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ConsultasService } from '../service/consultas.service';
 import {MatDialog} from '@angular/material/dialog';
 import { ProductComponent } from '../product/product.component';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { ProductComponent } from '../product/product.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private service: ConsultasService, public dialog:MatDialog) { }
+  constructor(private service: ConsultasService, public dialog:MatDialog, public auth:AuthService) { }
 
   products: any = []
   
@@ -21,6 +22,10 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.getAll()
+  }
+
+  isSeller(){
+    return this.auth.isSeller()
   }
 
   openDialog(id:any){

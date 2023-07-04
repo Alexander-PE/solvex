@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   getById(id: any) {
-    return this.http.get(`http://localhost:3000/api/usuario/${id}`)
+    return this.http.get(`https://localhost:7134/api/usuario/${id}`)
   }
 
   securitySession() {
@@ -23,7 +23,7 @@ export class AuthService {
       return true
     } else {
       this.router.navigate(['login'])
-      this.toastr.error('You must be logged in')
+      this.toastr.warning('You must be logged in')
       return false
     }
   }
@@ -34,12 +34,12 @@ export class AuthService {
         return true
       } else {
         this.router.navigate([''])
-        this.toastr.error('You must be logged in with an Admin account')
+        this.toastr.warning('You must be logged in with an Admin account')
         return false
       }
     } else {
       this.router.navigate(['login'])
-      this.toastr.error('You must be logged in')
+      this.toastr.warning('You must be logged in')
       return false
     }
   }
@@ -50,18 +50,26 @@ export class AuthService {
         return true
       } else {
         this.router.navigate([''])
-        this.toastr.error('You must be logged in with a Seller account')
+        this.toastr.warning('You must be logged in with a Seller account')
         return false
       }
     } else {
       this.router.navigate(['login'])
-      this.toastr.error('You must be logged in')
+      this.toastr.warning('You must be logged in')
       return false
     }
   }
 
   isLoggedIn() {
     return sessionStorage.getItem('userId') != null
+  }
+
+  isAdmin() {
+    return sessionStorage.getItem('role') == '1'
+  }
+
+  isSeller() {
+    return sessionStorage.getItem('role') == '3'
   }
 
   getRole() {
@@ -80,7 +88,11 @@ export class AuthService {
     return this.http.post('https://localhost:7134/api/usuario', data)
   }
 
-  updateUser(data: any) {
-    return this.http.put('', data)
+  updateUser(data: any, id: any) {
+    return this.http.put(`https://localhost:7134/api/usuario/${id}`, data)
+  }
+
+  removeUser(id: any) {
+    return this.http.delete(`https://localhost:7134/api/usuario/${id}`)
   }
 }

@@ -41,7 +41,7 @@ export class ConsultasService {
     return this.http.post('https://localhost:7134/api/detalle', data)
   }
 
-  getProductDetailById(id: any) {
+  getProductDetailByProductId(id: any) {
     return this.http.get(`https://localhost:7134/api/detalle/${id}`).pipe(map((res: any) => {
       return res
     }))

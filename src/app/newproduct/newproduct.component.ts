@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ConsultasService } from '../service/consultas.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-newproduct',
@@ -10,7 +11,7 @@ import { ConsultasService } from '../service/consultas.service';
   styleUrls: ['./newproduct.component.css']
 })
 export class NewproductComponent {
-  constructor(public fb: FormBuilder, private toastr: ToastrService, private router: Router, private service: ConsultasService) { }
+  constructor(public fb: FormBuilder, private toastr: ToastrService, private router: Router, private service: ConsultasService, private auth: AuthService) { }
 
   selectedColor?: string;
   data = new FormData()
@@ -20,7 +21,7 @@ export class NewproductComponent {
   productForm = this.fb.group({
     nombre: this.fb.control('', Validators.required),
     imagenUrl: '',
-    usuarioId: Number(sessionStorage.getItem('userId')),
+    usuarioId: this.auth.getUserId(),
     precio: this.fb.control('', Validators.required),
     descripcion: this.fb.control('', Validators.required),
     colorId: '',
@@ -43,6 +44,7 @@ export class NewproductComponent {
           productoId: res.id,
           colorId: this.productForm.value.colorId,
           precio: this.productForm.value.precio,
+          usuarioId: this.productForm.value.usuarioId,
         }).subscribe((res: any) => {
           this.toastr.success('Product added successfully')
           this.router.navigate([''])

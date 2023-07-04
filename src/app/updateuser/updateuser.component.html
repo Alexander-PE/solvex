@@ -1,35 +1,31 @@
-<mat-card>
-  <mat-card-header>
-    <h1>Update user</h1>
-  </mat-card-header>
+<h1 mat-dialog-title>{{data.nombre}}</h1>
+<form class="example-form" [formGroup]="updateForm" (ngSubmit)="updateUser()">
 
-  <mat-card-content>
-    <form class="example-form" [formGroup]="updateForm" (ngSubmit)="updateUser()">
-      <mat-form-field class="example-full-width">
-        <mat-label>Nombre</mat-label>
-        <input matInput formControlName="nombre">
-      </mat-form-field>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <!-- <input matInput [(ngModel)]="data.nombre"> -->
+      <input matInput formControlName="nombre" [value]="this.user.nombre">
+    </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-        <mat-label>Password</mat-label>
-        <input type="password" matInput formControlName="password">
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>password</mat-label>
+      <!-- <input matInput [(ngModel)]="data.nombre"> -->
+      <input matInput formControlName="password" [value]="this.user.password">
+    </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Color</mat-label>
-        <mat-select [(ngModel)]="selectedRole" name="color" [ngModelOptions]="{standalone: true}">
-          <mat-option *ngFor="let item of roles" [value]="item.id">
-            {{item.nombre}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <mat-select [(ngModel)]="selectedRole" name="roleId" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let item of roles" [value]="item.id">
+          {{item.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <div>
-        <button mat-raised-button color="primary">Submit</button>
-      </div>
+    <div>
+      <button type="submit" mat-raised-button color="primary">Update</button>
+    </div>
 
-    </form>
-    
-  </mat-card-content>
-</mat-card>
-
+  </div>
+</form>
