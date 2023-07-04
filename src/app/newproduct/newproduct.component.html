@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-header>
+    <h1>New Product</h1>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form class="example-form" [formGroup]="productForm" (ngSubmit)="addProduct()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Precio</mat-label>
+        <input type="number" matInput formControlName="precio">
+      </mat-form-field>
+
+      <input type="file" (change)="cambiarFoto($event)">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput placeholder="Descripcion del producto" formControlName="descripcion"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Color</mat-label>
+        <mat-select [(ngModel)]="selectedColor" name="color" [ngModelOptions]="{standalone: true}">
+          <mat-option *ngFor="let item of colors" [value]="item.id">
+            {{item.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button color="primary">Submit</button>
+      </div>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>

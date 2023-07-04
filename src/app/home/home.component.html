@@ -1,0 +1,18 @@
+
+  
+  <mat-grid-list cols="3" gutterSize="10px" style="margin-top: 100px;">
+    <mat-grid-tile *ngFor="let item of products">
+      <mat-card class="example-card" >
+          <img style="object-fit: cover; width: 300px; height: 300px; cursor: pointer;" (click)="openDialog(item.id)"  mat-card-image [src]="item.imagenUrl">
+        <!-- <button mat-button (click)="openDialog()">
+          <img style="object-fit: cover; width: 300px; height: 300px;"  mat-card-image [src]="item.imagenUrl">
+        </button> -->
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <a routerLink="/add">
+    <button mat-fab color="primary" class="foot" aria-label="Example icon button with a delete icon">
+      <mat-icon fontIcon="add"></mat-icon>
+    </button>
+  </a>
