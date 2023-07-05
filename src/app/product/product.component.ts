@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConsultasService } from '../service/consultas.service';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../service/auth.service';
 
 interface DialogData {
@@ -20,28 +20,34 @@ interface DialogData {
 })
 export class ProductComponent {
 
-  // id!: number;
   selectedColor?: string;
+  selectedProductId: any;
   selectedProductPrice: any;
   producto: any[] = [];
   colors: any[] = [];
-  constructor(private service: ConsultasService, @Inject(MAT_DIALOG_DATA) public data: DialogData, private auth: AuthService) { 
-    
+  constructor(private service: ConsultasService, public dialogRef: MatDialogRef<ProductComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private auth: AuthService, private router: Router) {
+
   }
 
-  updatePrice() {
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
+  ngDoCheck() {
     this.producto.forEach(element => {
-      if(element.colorId == this.selectedColor){
+      if (element.colorId == this.selectedColor) {
         this.selectedProductPrice = element.precio
+        this.selectedProductId = element.productoId
       }
     });
-    console.log(this.selectedColor)
-    console.log(this.selectedProductPrice)
-
   }
 
-  isSeller(){
+  isSeller() {
     return this.auth.isSeller()
+  }
+
+  isOwner() {
+    return this.auth.isOwner(this.data.usuarioId)
   }
 
   getColors() {
@@ -52,8 +58,11 @@ export class ProductComponent {
       });
       res = res.filter((item: any) => ids.includes(item.id))
       this.colors = res
-      this.selectedColor = this.colors[0].id
+      this.selectedColor = this.producto[0].colorId
+      this.selectedProductId = this.producto[0].productoId
       this.selectedProductPrice = this.producto[0].precio
+
+      
     })
   }
 

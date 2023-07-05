@@ -10,7 +10,9 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private service: ConsultasService, public dialog:MatDialog, public auth:AuthService) { }
+  constructor(private service: ConsultasService, public dialog:MatDialog, public auth:AuthService) { 
+    this.getAll()
+   }
 
   products: any = []
   
@@ -20,9 +22,9 @@ export class HomeComponent {
     })
   }
 
-  ngOnInit(): void {
-    this.getAll()
-  }
+  // ngOnInit(): void {
+  //   this.getAll()
+  // }
 
   isSeller(){
     return this.auth.isSeller()

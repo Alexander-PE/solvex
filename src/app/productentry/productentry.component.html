@@ -1,1 +1,29 @@
-<p>productentry works!</p>
+<mat-card>
+  <mat-card-header>
+    <h1>New Product detail</h1>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form class="example-form" [formGroup]="productDetailForm" (ngSubmit)="addProductDetail()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Precio</mat-label>
+        <input type="number" matInput formControlName="precio">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Color</mat-label>
+        <mat-select [(ngModel)]="selectedColor" name="color" [ngModelOptions]="{standalone: true}">
+          <mat-option *ngFor="let item of colors" [value]="item.id">
+            {{item.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button color="primary">Submit</button>
+      </div>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>

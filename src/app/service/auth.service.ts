@@ -80,6 +80,10 @@ export class AuthService {
     return sessionStorage.getItem('userId')
   }
 
+  isOwner(id: any){
+    return this.getUserId() == id
+  }
+
   getByName(nombre: any) {
     return this.http.get(`https://localhost:7134/api/usuario/nombre?nombre=${nombre}`)
   }
