@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'products', component: UserproductsComponent, canActivate: [() => inject(AuthService).securitySessionSeller()]},
   {path: 'users', component: UserComponent, canActivate: [() => inject(AuthService).securitySessionAdmin()]},
   {path: 'users/:id', component: UpdateuserComponent, canActivate: [() => inject(AuthService).securitySessionAdmin()]},
-  {path: 'users/new', component: NewuserComponent, canActivate: [() => inject(AuthService).securitySessionAdmin()]},
+  {path: 'newuser', component: NewuserComponent, canActivate: [() => inject(AuthService).securitySessionAdmin()]},
 ];
 
 @NgModule({

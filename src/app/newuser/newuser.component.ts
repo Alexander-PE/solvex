@@ -26,7 +26,7 @@ export class NewuserComponent {
     if (this.newForm.valid) {
       this.newForm.value.roleId = this.selectedRole
       this.auth.register(this.newForm.value).subscribe(res => {
-        this.toastr.success('User registered')
+        this.toastr.success('User created')
         this.router.navigate(['users'])
       })
     } else {

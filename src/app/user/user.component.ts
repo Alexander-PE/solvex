@@ -21,7 +21,7 @@ export interface user {
 export class UserComponent {
   constructor(private auth: AuthService, private service:ConsultasService, public dialog:MatDialog, private toastr: ToastrService) { 
     this.loadUsers()
-   }
+  }
 
   userlist!: any[];
   dataSource: any;
@@ -30,7 +30,7 @@ export class UserComponent {
 
 
 
-  async loadUsers() {
+   loadUsers() {
     this.auth.getAll().subscribe((res: any) => {
       this.userlist = res
       this.service.getAllRoles().subscribe((data: any) => {
@@ -47,7 +47,7 @@ export class UserComponent {
   openDialog(id:any){
     const item = this.userlist.find((x:any) => x.id === id)
 
-    const dialogRef = this.dialog.open(UpdateuserComponent, {
+    this.dialog.open(UpdateuserComponent, {
       data: item
     });
   }

@@ -46,4 +46,14 @@ export class ConsultasService {
       return res
     }))
   }
+
+  removeProductDetail(id: any) {
+    return this.http.delete(`https://localhost:7134/api/detalle/${id}`)
+  }
+
+  getProductDetailByUserId(id: any) {
+    return this.http.get(`https://localhost:7134/api/detalle/user/${id}`).pipe(map((res: any) => {
+      return res
+    }))
+  }
 }

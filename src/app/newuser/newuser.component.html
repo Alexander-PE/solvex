@@ -16,8 +16,8 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Color</mat-label>
-        <mat-select [(ngModel)]="selectedRole" name="color" [ngModelOptions]="{standalone: true}">
+        <mat-label>Role</mat-label>
+        <mat-select [(ngModel)]="selectedRole" name="role" [ngModelOptions]="{standalone: true}">
           <mat-option *ngFor="let item of roles" [value]="item.id">
             {{item.nombre}}
           </mat-option>
@@ -32,4 +32,6 @@
     
   </mat-card-content>
 </mat-card>
+
+
 

@@ -29,3 +29,9 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<a routerLink="/newuser">
+  <button mat-fab color="primary" class="foot" aria-label="Example icon button with a delete icon">
+    <mat-icon fontIcon="add"></mat-icon>
+  </button>
+</a>

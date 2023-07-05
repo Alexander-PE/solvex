@@ -29,6 +29,7 @@ export class ProductentryComponent {
   addProductDetail() {
     if(this.selectedColor == undefined) {
       this.toastr.error('Select a color or go to Home Page')
+      return
     }
     if(this.productDetailForm.valid) {
       this.productDetailForm.value.productoId = this.productId
